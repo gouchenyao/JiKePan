@@ -4,7 +4,7 @@
     {%- block html %}
     <head>
         {%- block head %}
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon_package/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="http://ohny7w589.bkt.clouddn.com/favicon.png">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon_package/favicon-16x16.png') }}">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_package/apple-touch-icon.png') }}">
         <link rel="manifest" href="{{ url_for('static', filename='favicon_package/site.webmanifest') }}">
@@ -35,7 +35,7 @@
 
             body {
                 padding-top: 60px;
-                background-image: url('../static/img/background.jpg');
+                background-image: url('http://ohny7w589.bkt.clouddn.com/tg.jpg');
                 background-size: cover;
             }
 
@@ -70,7 +70,7 @@
                     <li><a href="{{ url_for('show_courses') }}">课程列表</a></li>
                     <li><a href="{{ url_for('add_courses') }}">修改课表</a></li>
                     <li><a href="{{ url_for('all_courses') }}">全校课表</a></li>
-                    <li><a href="{{ url_for('update_courses') }}" data-toggle="tooltip" data-placement="bottom" title="此过程耗时十秒左右，更新后非本学期课程将会被删除！">更新课表</a></li>
+                    <li><a href="{{ url_for('update_courses') }}" data-toggle="tooltip" data-placement="bottom" title="此过程耗时五秒左右，更新后非本学期课程将会被删除！">更新课表</a></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
