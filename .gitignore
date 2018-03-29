@@ -1,0 +1,6 @@
+ghostdriver.log
+data/database/ji_ke_pan.db
+__pycache__/
+
+!data/files
+!data/thumbnail

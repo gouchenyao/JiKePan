@@ -1,0 +1,58 @@
+﻿{% extends "base.html" %}
+{% block title %}课程列表{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="well col-md-12">
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                {% if category == 'message' %}
+                <div align="center" class="alert alert-warning" role="alert">
+                    {{ message }}
+                </div>
+                {% else %}
+                <div align="center" class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            {% if courses != [] %}
+            <div class='table-responsive'>
+                <table class='table table-striped table-hover'>
+                    <thead>
+                        <tr>
+                            <th>课号</th>
+                            <th>课程名称</th>
+                            <th>教师姓名</th>
+                            <th>课程安排</th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor:pointer;">
+                        {% for course in courses %}
+                        <tr class='clickable-row' data-href='{{ url_for('show_files', course_id = course.course_id) }}' data-toggle="tooltip" data-placement="top" title="点击进入课程空间 (๑¯∀¯๑)">
+                            <td>{{ course.course_id}}</td>
+                            <td>{{ course.course_name }}</td>
+                            <td>{{ course.teacher_name }}</td>
+                            <td>{{ course.course_schedule }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <h2 align="center"><strong>WHAT？！你这学期居然没课？！ Σ(っ°Д°;)っ</strong></h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

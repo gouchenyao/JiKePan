@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh" xml:lang="zh"><head>
+	<title></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="content-style-type" content="text/css">
+	<meta http-equiv="content-script-type" content="text/javascript">
+	
+	<link id="beangle_theme_link" href="/eams/static/themes/default/beangle-ui.css" rel="stylesheet" type="text/css">
+	<link href="/eams/static/themes/default/colorbox.css" rel="stylesheet" type="text/css">
+	<link href="/eams/static/tongji_style_mod.css" rel="stylesheet" type="text/css">
+	
+	<script src="/eams/static/scripts/require.config.js?v=3"></script>
+	<script>
+	require.baseUrl="/eams/static/scripts";
+	</script>
+	<script src="/eams/static/scripts/require.js"></script>
+	
+	<script>
+		if ( typeof window.JSON === 'undefined' ) { document.write('<script src="/eams/static/scripts/history/json2.js"><\/script>'); }
+	</script>
+	<script type="text/javascript" src="/eams/static/scripts/jquery-1.8.0.js"></script>
+	<script type="text/javascript" src="/eams/struts/js/base/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="/eams/struts/js/plugins/jquery.subscribe.js"></script>
+	<link id="jquery_theme_link" rel="stylesheet" href="/eams/struts/themes/smoothness/jquery-ui.css" type="text/css">
+	<script type="text/javascript" src="/eams/struts/js/struts2/jquery.struts2-3.1.0.js"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function () {
+	  	jQuery.scriptPath = "/eams/struts/";
+		jQuery.struts2_jquery.minSuffix = "";
+		jQuery.ajaxSettings.traditional = true;
+	
+		jQuery.ajaxSetup ({
+			cache: false
+		});
+	});
+	</script>
+
+	<script>
+		jQuery('div#colorbox').remove();
+		jQuery('div#cboxOverlay').remove();
+	</script>
+	<script type="text/javascript" src="/eams/static/scripts/colorbox/jquery.colorbox.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/history/history.adapter.jquery.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/history/history.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/history/history.html4.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/beangle/beangle-2.4.4.js?20130412"></script>
+	<script type="text/javascript" src="/eams/static/scripts/beangle/beangle-ui-2.4.4.js?20130412"></script>
+	<!-- backbone & underscore -- fontend MVC framework -->
+	<script type="text/javascript" src="/eams/static/scripts/underscore.min.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/backbone.min.js"></script>
+	<script type="text/javascript" src="/eams/static/scripts/underscore.string.min.js"></script>
+	<script>
+	require(['underscore.string'], function(_s) {
+		_.str = _s;
+		_.mixin(_.str.exports());
+	});
+	</script>
+	<script type="text/javascript" src="/eams/static/scripts/my97/WdatePicker-4.72.js"></script><link href="/eams/static/themes/default/WdatePicker.css" rel="stylesheet" type="text/css">
+	<link href="/eams/static/css/foundation.css" rel="stylesheet" type="text/css">
+<link href="/eams/static/themes/default/home.css" rel="stylesheet" type="text/css">
+<script src="/eams/static/scripts/jscroll.js" type="text/javascript"></script>
+<script src="/eams/static/scripts/jquery.cookie.js" type="text/javascript"></script>
+<script type="text/javascript" src="/eams/static/scripts/submitFrame.js"></script>
+<style>
+#_menu_folder {
+	height:100%;
+	width:100%;
+	background-color:rgba(0, 0, 0, 0.2);
+	cursor:pointer;
+	position:relative;
+}
+#_menu_folder:hover {
+	height:100%;
+	width:100%;
+	background-color:rgba(222, 222, 222, 1);
+}
+.arrow-right {
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 6px solid rgba(0, 0, 0, 0.6);
+		top:50%;
+		position:absolute;
+}
+.arrow-left {
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent; 
+        border-right:6px solid rgba(0, 0, 0, 0.6);
+		top:50%;
+		position:absolute;
+}
+.color_theme_selector {display:inline-block;width:10px;height:10px;margin-right:2px;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="/eams/static/themes/default/css/semesterCalendar.css"></head>
+<body><div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" style="padding-bottom: 42px; padding-right: 42px; display: none;"><div id="cboxWrapper" style=""><div style=""><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxLoadedContent" class="" style="width: 0px; height: 0px; overflow: hidden;"></div><div id="cboxLoadingOverlay" class="" style=""></div><div id="cboxLoadingGraphic" class="" style=""></div><div id="cboxTitle" class="" style=""></div><div id="cboxCurrent" class="" style=""></div><div id="cboxNext" class="" style=""></div><div id="cboxPrevious" class="" style=""></div><div id="cboxSlideshow" class="" style=""></div><div id="cboxClose" class="" style=""></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div>
+
+
+				
+<div class="banner">
+	<div>
+		<div class="banner_area">
+			<table cellpadding="0" cellspacing="0" class="button_box_1" style="width:159px">
+				<tbody><tr>
+					<td width="25"></td>
+					<td width="90">
+						<a href="/eams/home!welcome.action" onclick="return bg.Go(this,'main',true)" class="a3">返回首页</a>&nbsp;&nbsp;
+					</td>
+					<td>
+						<a href="/eams/saml/Logout" cssclass="a3" target="_top">退出</a>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+		<div class="banner_area">
+<form id="form374874973" name="form374874973" action="/eams/home.action" method="post">			<a href="/eams/home!index.action?forEN=CH" onclick="inChinese()" title="中文">中文</a>
+            || 
+            <a href="/eams/home!index.action?forEN=EN" onclick="inEnglish()" title="English">English</a>
+
+
+			
+					<a href="#color_theme_#FFFFFF" id="color_theme_selector_FFFFFF" class="color_theme_selector" style="background-color:#FFFFFF;" title="白色"></a>
+					<a href="#color_theme_#FAF9DE" id="color_theme_selector_FAF9DE" class="color_theme_selector" style="background-color:#FAF9DE;" title="杏仁黄"></a>
+					<a href="#color_theme_#FFF2DE" id="color_theme_selector_FFF2DE" class="color_theme_selector" style="background-color:#FFF2DE;" title="秋叶褐"></a>
+					<a href="#color_theme_#FDE6E0" id="color_theme_selector_FDE6E0" class="color_theme_selector" style="background-color:#FDE6E0;" title="胭脂红"></a>
+					<a href="#color_theme_#E3EDCD" id="color_theme_selector_E3EDCD" class="color_theme_selector" style="background-color:#E3EDCD;" title="青草绿"></a>
+					<a href="#color_theme_#DCE2F1" id="color_theme_selector_DCE2F1" class="color_theme_selector" style="background-color:#DCE2F1;" title="海天蓝"></a>
+					<a href="#color_theme_#E9EBFE" id="color_theme_selector_E9EBFE" class="color_theme_selector" style="background-color:#E9EBFE;" title="葛巾紫"></a>
+					<a href="#color_theme_#EAEAEF" id="color_theme_selector_EAEAEF" class="color_theme_selector" style="background-color:#EAEAEF;" title="极光灰"></a>
+				
+				<a href="/eams/security/my.action" target="_blank" title="查看登录记录">姚星宇(1452597)</a>&nbsp;&nbsp;
+					<span style="padding:0 2px;color:#FFF;font-weight:blod;">本科生</span>
+					<input id="homeProjectId" type="hidden" name="restrictionProjectId" value="1">
+					<span style="padding:0 2px;color:#FFF;font-weight:blod;">学生</span>
+					<input type="hidden" name="security.categoryId" value="1" style="width:70px">
+</form>
+		</div>
+	</div>
+	<br><br>
+	<div style="float:right;display:block;clear:both;">
+		<ul class="nav_box" id="nav_box">
+		</ul>
+	</div>
+</div>
+<script>
+	jQuery('.nav_box li').each(function(index, li) {
+		jQuery(this).focus(function(e) {
+			jQuery(this).blur();
+		});
+		jQuery(this).click(function(e) {
+			jQuery('li', jQuery(this).parent()).each(function(index, li) {
+				jQuery(this).removeClass('current');
+			});
+			jQuery(this).addClass('current');
+		});
+	});
+
+	jQuery(function() {
+		jQuery('#color_theme_selector_FFFFFF').click(function() {
+			jQuery(document.body).css('background-color', '#FFFFFF');
+			jQuery.cookie('_body_color_theme', '#FFFFFF', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_FAF9DE').click(function() {
+			jQuery(document.body).css('background-color', '#FAF9DE');
+			jQuery.cookie('_body_color_theme', '#FAF9DE', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_FFF2DE').click(function() {
+			jQuery(document.body).css('background-color', '#FFF2DE');
+			jQuery.cookie('_body_color_theme', '#FFF2DE', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_FDE6E0').click(function() {
+			jQuery(document.body).css('background-color', '#FDE6E0');
+			jQuery.cookie('_body_color_theme', '#FDE6E0', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_E3EDCD').click(function() {
+			jQuery(document.body).css('background-color', '#E3EDCD');
+			jQuery.cookie('_body_color_theme', '#E3EDCD', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_DCE2F1').click(function() {
+			jQuery(document.body).css('background-color', '#DCE2F1');
+			jQuery.cookie('_body_color_theme', '#DCE2F1', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_E9EBFE').click(function() {
+			jQuery(document.body).css('background-color', '#E9EBFE');
+			jQuery.cookie('_body_color_theme', '#E9EBFE', { expires: 30, path: '/' });
+		});
+		jQuery('#color_theme_selector_EAEAEF').click(function() {
+			jQuery(document.body).css('background-color', '#EAEAEF');
+			jQuery.cookie('_body_color_theme', '#EAEAEF', { expires: 30, path: '/' });
+		});
+		if(jQuery.cookie('_body_color_theme')) {
+			var color = jQuery.cookie('_body_color_theme')
+			jQuery(document.body).css('background-color', color);
+		}
+	});
+</script>
+
+<table id="mainTable" style="width:100%;height:95%;clear:both;float:left;">
+	<tbody><tr>
+	   <td style="height:100%;width:10%" id="leftTD" valign="top">
+<div id="menu_panel" class="_ajax_target">
+
+
+
+<ul class="menu collapsible">
+     
+     <li style="margin:0px;" class="expand"> 
+     <a class="first_menu" href="#">我的校园</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">我的培养计划</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			
+       </div></ul></li>
+     <li>
+     <a class="first_menu active" href="#">我的课程</a><ul class="acitem" style="display: block;"><div class="scroll_box">
+       			<li><a href="/eams/doorOfStdElectCourse.action" onclick="return bg.Go(this,'main',true)" class="p_1">个人选课</a></li>
+       			<li><a href="/eams/mutualStdElectCourse.action" onclick="return bg.Go(this,'main',true)" class="p_1">本研互选</a></li>
+       			<li class="current"><a href="/eams/courseTableForStd.action" onclick="return bg.Go(this,'main',true)" class="p_1">我的课表</a></li>
+       			<li><a href="/eams/applyElectionForStd.action" onclick="return bg.Go(this,'main',true)" class="p_1">选课申请处理查看</a></li>
+       			<li><a href="/eams/electionCourseTableForCampusOfStd.action" onclick="return bg.Go(this,'main',true)" class="p_1">全校课程表</a></li>
+       			<li><a href="/eams/mutualElectiveStudent.action" onclick="return bg.Go(this,'main',true)" class="p_1">互选课程申请</a></li>
+       			<li><a href="/eams/stdMajorTable.action" onclick="return bg.Go(this,'main',true)" class="p_1">我的专业课表</a></li>
+       			<li><a href="/eams/classroom/occupy/status-simple.action" onclick="return bg.Go(this,'main',true)" class="p_1">教室状态查询</a></li>
+       			<li><a href="/eams/medtermWithdrawApply.action" onclick="return bg.Go(this,'main',true)" class="p_1">期中退课申请</a></li>
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">我的学籍</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			<li><a href="/eams/changeMajorApply.action" onclick="return bg.Go(this,'main',true)" class="p_1">转专业申请</a></li>
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">我的成绩</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			<li><a href="/eams/teach/exchange/std-grade-abroad.action" onclick="return bg.Go(this,'main',true)" class="p_1">交流成绩填报-国（境）外</a></li>
+       			<li><a href="/eams/teach/exchange/std-bind-grade.action" onclick="return bg.Go(this,'main',true)" class="p_1">交流成绩填报</a></li>
+       			<li><a href="/eams/transferGradeApply.action" onclick="return bg.Go(this,'main',true)" class="p_1">插班生成绩填报</a></li>
+       			<li><a href="/eams/stdPraApply.action" onclick="return bg.Go(this,'main',true)" class="p_1">创新学分认定申请</a></li>
+       			<li><a href="/eams/scoreCreditConfirmApply.action" onclick="return bg.Go(this,'main',true)" class="p_1">校内学分认定申请</a></li>
+       			<li><a href="/eams/teach/grade/course/std-return-achievements.action" onclick="return bg.Go(this,'main',true)" class="p_1">退成绩申请</a></li>
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">我的考试</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			<li><a href="/eams/stdExamTable.action" onclick="return bg.Go(this,'main',true)" class="p_1">我的考试</a></li>
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">网上答疑</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			<li><a href="/eams/onlineQuestion.action" onclick="return bg.Go(this,'main',true)" class="p_1">网上答疑</a></li>
+       </div></ul></li>
+     <li>
+     <a class="first_menu" href="#">系统帮助</a><ul class="acitem" style="display: none;"><div class="scroll_box">
+       			<li><a href="/eams/home.action?method=welcome" onclick="return bg.Go(this,'main',true)" class="p_1">系统主页</a></li>
+       			<li><a href="/eams/noticeSearch.action" onclick="return bg.Go(this,'main',true)" class="p_1">系统公告</a></li>
+       			
+  </div></ul></li>
+</ul>
+</div>
+<script>bg.Go('/eams/home!submenus.action?menu.id=','menu_panel')</script>	   </td>
+	   <td style="height:100%;width:8px">
+	   		<!-- 折叠菜单栏的bar -->
+			<div id="_menu_folder"><div id="_menu_folder_tri" class="arrow-left"></div></div>
+	   </td>
+	   <td id="rightTD" valign="top">
+<div id="main" class="_ajax_target">
+<div id="toolbar415028876" class="toolbar notprint"><div class="toolbar-title"><img class="toolbar-icon" src="/eams/static/themes/default/icons/16x16/actions/info.png"><strong>学生课表</strong></div><div class="toolbar-msg" id="toolbar415028876_msg"></div><div class="toolbar-items" id="toolbar415028876_items"><div class="toolbar-item" title="教材信息"><img class="toolbar-icon" src="/eams/static/themes/default/icons/16x16/actions/action.png" alt="教材信息">教材信息</div><div class="toolbar-separator">&nbsp;</div><div class="toolbar-item" title="打印预览"><img class="toolbar-icon" src="/eams/static/themes/default/icons/16x16/actions/print.png" alt="打印预览">打印预览</div></div><div class="toolbar-line"><img height="1" width="100%" align="top" src="/eams/static/themes/default/icons/16x16/actions/keyline.png"></div></div>
+
+<div style="background: url('/eams/static/images/semesterBarBg.png') repeat-x scroll 50% 50% #DEEDF7;border: 1px solid #AED0EA;color: #222222;font-weight: bold;height:28px;">
+<form id="courseTableForm" name="courseTableForm" action="http://4m3.tongji.edu.cn/eams/courseTableForStd!index.action" method="post" target="main"><div style="margin-left:4px;margin-top:2px;float:left;line-height:22px;height:22px;">
+		<input type="hidden" name="ignoreHead" value="1">
+	<label for="courseTableType" class="title">课表类型:</label>
+	<select id="courseTableType" name="setting.kind" onchange="searchTable()" style="width:120px">
+		<option value="std">教学周课表</option>
+		 
+		<option value="prac">实践周课表</option>
+	</select>
+	|
+	<label for="startWeek" class="title">选择教学周:</label>
+	<select id="startWeek" name="startWeek" onchange="searchTable()">
+    	<option value="1">第1周</option><option value="2">第2周</option><option value="3">第3周</option><option value="4">第4周</option><option value="5">第5周</option><option value="6">第6周</option><option value="7">第7周</option><option value="8">第8周</option><option value="9">第9周</option><option value="10">第10周</option><option value="11">第11周</option><option value="12">第12周</option><option value="13">第13周</option><option value="14">第14周</option><option value="15">第15周</option><option value="16">第16周</option><option value="17">第17周</option><option value="18">第18周</option><option value="19">第19周</option><option value="20">第20周</option><option value="21">第21周</option><option value="22">第22周</option><option value="23">第23周</option><option value="24">第24周</option><option value="25">第25周</option><option value="26">第26周</option><option value="27">第27周</option>
+    </select>
+    |
+
+</div>
+<div style="margin-left:10px;margin-top:2px;float:left;line-height:18px;height:22px;">
+<label for="semesterBar922211328" style="display: none;">项目:</label>
+<select id="semesterBar922211328" name="project.id" style="display: none;">	<option value="1" selected="">本科生</option>
+</select>
+<label for="semesterBar922211328Semester" class="title">学年学期:</label>
+<input id="semesterBar922211328Semester" class="calendar-text" title="学年学期" type="text" value="" readonly="true">
+<div class="calendar-bar">
+	<input id="semesterCalendar_target" type="hidden" name="semester.id" value="105">
+	<a name="prev" href="#"><img src="/eams/static/themes/default/images/semesterCalendar_prev.gif"></a>
+	<input id="semesterCalendar_year" class="calendar-bar-input" type="text" index="10" value="" maxlength="4" size="4" readonly="true"><span>学年</span>
+	<a name="next" href="#"><img src="/eams/static/themes/default/images/semesterCalendar_next.gif"></a>
+	
+	<a name="prev" href="#"><img src="/eams/static/themes/default/images/semesterCalendar_prev.gif"></a>
+	<input id="semesterCalendar_term" class="calendar-bar-input" type="text" index="1" value="" size="4" readonly="true"><span>学期</span>
+	<a name="next" href="#"><img src="/eams/static/themes/default/images/semesterCalendar_next.gif"></a>
+	<a href="#" id="allSemester"></a>
+	
+	<table id="semesterCalendar_yearTb">
+		<tbody><tr><td index="0">2007-2008</td><td index="1">2008-2009</td><td index="2">2009-2010</td><td index="3">2010-2011</td></tr><tr><td index="4">2011-2012</td><td index="5">2012-2013</td><td index="6">2013-2014</td><td index="7">2014-2015</td></tr><tr><td index="8">2015-2016</td><td index="9">2016-2017</td><td index="10">2017-2018</td><td index="11">2018-2019</td></tr><tr><td index="12">2019-2020</td><td index="13">2020-2021</td><td index="14">2021-2022</td><td index="15">2022-2023</td></tr><tr><td index="16">2023-2024</td><td index="17">2024-2025</td><td index="18">2025-2026</td><td index="19">2026-2027</td></tr><tr><td index="20">2027-2028</td><td index="21">2029-2030</td><td></td><td></td><td></td></tr><tr><td></td></tr></tbody>
+	</table>
+	<table id="semesterCalendar_termTb">
+		<tbody><tr><td val="104"><span>1</span>学期</td><td val="105"><span>2</span>学期</td></tr></tbody>
+	</table>
+</div>
+
+<input type="submit" value="切换学期" onclick="refreshTable();return false;">
+
+
+
+</div>
+<input name="ids" value="845948470" type="hidden"><input id="courseTableForm_submit" type="submit" style="display: none;"></form>
+</div><table class="indexpanel">
+	<tbody><tr>
+		<td class="index_content">
+<div id="contentDiv" class="_ajax_target">
+ 
+ 
+
+	   		<pre>课表格式说明：教师姓名 课程名称(序号) (第n周-第m周,教室)</pre>
+		<table width="100%" id="manualArrangeCourseTable" align="center" class="gridtable" style="text-align:center">
+			<thead>
+			<tr>
+		    	<th style="background-color:#DEEDF7;" height="10px" width="80px">节次/周次
+		    	</th><th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期一</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期二</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期三</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期四</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期五</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期六</font>
+				</th>
+		    	<th style="background-color:#DEEDF7;">
+		        	<font size="2px">星期日</font>
+				</th>
+			</tr>
+			</thead>
+			<tbody><tr>
+			    <td style="background-color:pink">
+		    		<font size="2px"> 第一节课</font>
+				</td>
+		   		<td id="TD0_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD12_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD24_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD36_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD48_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD60_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD72_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:pink">
+		    		<font size="2px"> 第二节课</font>
+				</td>
+		   		<td id="TD1_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD13_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD25_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD37_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD49_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD61_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD73_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:pink">
+		    		<font size="2px"> 第三节课</font>
+				</td>
+		   		<td id="TD2_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD14_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD26_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD38_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD50_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD62_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD74_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:pink">
+		    		<font size="2px"> 第四节课</font>
+				</td>
+		   		<td id="TD3_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD15_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD27_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD39_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD51_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD63_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD75_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:yellow">
+		    		<font size="2px"> 第五节课</font>
+				</td>
+		   		<td id="TD4_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD16_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD28_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD40_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD52_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD64_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD76_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:yellow">
+		    		<font size="2px"> 第六节课</font>
+				</td>
+		   		<td id="TD5_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD17_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD29_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD41_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD53_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD65_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD77_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:yellow">
+		    		<font size="2px"> 第七节课</font>
+				</td>
+		   		<td id="TD6_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD18_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD30_0" style="backGround-Color:#ffffff;font-size:12px" rowspan="2" class="infoTitle" title="刘成菊 毕业设计(论文)(自动化)(10025101);(1-17,专用教室)">刘成菊 毕业设计(论文)(自动化)(10025101)<br>(1-17,专用教室)</td>
+		   		<td id="TD42_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD54_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD66_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD78_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:yellow">
+		    		<font size="2px"> 第八节课</font>
+				</td>
+		   		<td id="TD7_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD19_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		
+		   		<td id="TD43_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD55_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD67_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD79_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:red">
+		    		<font size="2px"> 第九节课</font>
+				</td>
+		   		<td id="TD8_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD20_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD32_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD44_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD56_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD68_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD80_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:#00bfff">
+		    		<font size="2px"> 第十节课</font>
+				</td>
+		   		<td id="TD9_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD21_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD33_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD45_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD57_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD69_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD81_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:#00bfff">
+		    		<font size="2px"> 第十一节课</font>
+				</td>
+		   		<td id="TD10_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD22_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD34_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD46_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD58_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD70_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD82_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+			<tr>
+			    <td style="background-color:red">
+		    		<font size="2px"> 第十二节课</font>
+				</td>
+		   		<td id="TD11_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD23_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD35_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD47_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD59_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD71_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+		   		<td id="TD83_0" style="backGround-Color:#ffffff;font-size:12px"></td>
+			</tr>
+		</tbody></table> 
+
+	   		    <br>
+<div class="grid">
+<table id="grid1393671089" class="gridtable">
+<thead class="gridhead">
+<tr>
+<th width="5%">序号</th>
+<th width="7%">课程序号</th>
+<th width="10%">课程名称</th>
+<th width="6%">必/选</th>
+<th width="6%">试/查</th>
+<th width="10%">备注</th>
+<th width="5%">学分</th>
+<th width="5%">教师</th>
+<th width="26%">上课安排</th>
+<th width="10%">校区</th>
+<th width="5%">教材</th>
+</tr>
+</thead>
+
+<tbody id="grid1393671089_data"><tr class="griddata-even">		
+		
+		
+		
+</tr></tbody>
+</table>
+
+</div>
+   		
+   		
+   		    
+   		<br>
+</div>
+		</td>
+	</tr>
+</tbody></table>
+
+</div>
+<script>bg.Go('/eams/home!welcome.action','main')</script>	   </td>
+	</tr>
+</tbody></table>
+
+<script type="text/javascript">
+	function editAccount(){
+		var url = "/eams/security/my!edit.action";
+		var selector= window.open(url, 'selector', 'scrollbars=yes,status=yes,width=1,height=1,left=1000,top=1000');
+		selector.moveTo(200,200);
+		selector.resizeTo(350,250);
+	}
+	jQuery(function() {
+		jQuery('#_menu_folder_tri').addClass('arrow-left');
+		jQuery('#_menu_folder').click(function() {
+			jQuery('#leftTD').toggle(200);
+			var jq_tri = jQuery('#_menu_folder_tri');
+			if(jq_tri.hasClass('arrow-left')) {
+				jq_tri.removeClass('arrow-left');
+				jq_tri.addClass('arrow-right');
+			} else {
+				jq_tri.removeClass('arrow-right');
+				jq_tri.addClass('arrow-left');
+			}
+		});
+	});
+	function inEnglish(){
+			var val="session_locale=en_US";
+			document.cookie = val;
+    }
+
+	function inChinese(){
+				var val="session_locale=zh_CN";
+				document.cookie = val;
+	}
+</script>
+
+
+
+<div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 186px; height: 198px;" src="/eams/static/scripts/my97/My97DatePicker.htm" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>

@@ -1,0 +1,85 @@
+﻿{% extends "base.html" %}
+{% block title %}登录{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    body {
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.4) 100%), url('../static/img/background.jpg');
+    }
+
+    /*web background*/
+    .container {
+        height: 90%;
+        display: table;
+    }
+
+    .row {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    /* centered columns styles */
+    .row-centered {
+        text-align: center;
+    }
+
+    .col-centered {
+        display: inline-block;
+        float: none;
+        text-align: left;
+        margin-right: -4px;
+    }
+</style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row row-centered">
+        <div class="well col-md-4 col-centered">
+            <h1 align="center">济课盘</h1>
+            <div>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                {% if category == 'message' %}
+                <div align="center" class="alert alert-warning" role="alert">
+                    {{ message }}
+                </div>
+                {% else %}
+                <div align="center" class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <form action="{{ url_for('login') }}" method="post" role="form">
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="在这里输入学号 (ﾉﾟ▽ﾟ)ﾉ" />
+                </div>
+                <div class="input-group input-group-md">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="在这里输入密码 (*/ω＼*)" />
+                </div>
+                <br />
+                <button id="fat-btn" type="submit" class="btn btn-success btn-block" data-loading-text="正在4m3翻箱倒柜地寻找您的课表 (～￣▽￣)～">点这里登录 (￣▽￣)~*</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    $(function () {
+        $(".btn").click(function () {
+            $(this).button('loading').delay(1000).queue(function () {
+            });
+        });
+    });
+</script>
+{% endblock %}

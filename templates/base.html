@@ -1,0 +1,141 @@
+﻿{% block doc -%}
+<!DOCTYPE html>
+<html{% block html_attribs %}{% endblock html_attribs %}>
+    {%- block html %}
+    <head>
+        {%- block head %}
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon_package/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon_package/favicon-16x16.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon_package/apple-touch-icon.png') }}">
+        <link rel="manifest" href="{{ url_for('static', filename='favicon_package/site.webmanifest') }}">
+        <link rel="mask-icon" href="{{ url_for('static', filename='favicon_package/safari-pinned-tab.svg') }}" color="#5bbad5">
+
+        <title>{% block title %}{{title|default}}{% endblock title %}</title>
+
+        {%- block metas %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#eeeeee">
+        {%- endblock metas %}
+
+        {%- block styles %}
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/blueimp-gallery.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fileupload.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fileupload-ui.css') }}">
+        <style>
+            html, body {
+                height: 100%;
+            }
+
+            body {
+                padding-top: 60px;
+                background-image: url('../static/img/background.jpg');
+                background-size: cover;
+            }
+
+            .navbar-brand {
+                margin-top: -4% !important;
+            }
+
+            .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
+                background-color: #6495ED;
+                color: #eeeeee;
+            }
+        </style>
+        {%- endblock styles %}
+
+        {%- endblock head %}
+    </head>
+
+    <body{% block body_attribs %}{% endblock body_attribs %}>
+        {% block body -%}
+
+        {% block navbar %}
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <span><img src="{{ url_for('static', filename='favicon_package/favicon-32x32.png') }}" width="32" height="32"></span>
+                        济课盘
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    {% if session.get('logged_in') %}
+                    <li><a href="{{ url_for('show_courses') }}">课程列表</a></li>
+                    <li><a href="{{ url_for('add_courses') }}">修改课表</a></li>
+                    <li><a href="{{ url_for('all_courses') }}">全校课表</a></li>
+                    <li><a href="{{ url_for('update_courses') }}" data-toggle="tooltip" data-placement="bottom" title="此过程耗时十秒左右，更新后非本学期课程将会被删除！">更新课表</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if not session.get('logged_in') %}
+                    <li><a href="{{ url_for('login') }}">登录</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('logout') }}">注销</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {%- endblock navbar %}
+
+        {% block content -%}
+
+        {% block page_content %}
+        {% endblock %}
+
+        {%- endblock content %}
+
+        {% block scripts %}
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+        <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+
+        <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+        <script src="/static/js/vendor/jquery.ui.widget.js"></script>
+        <!-- The Templates plugin is included to render the upload/download listings -->
+        <script src="/static/js/tmpl.min.js"></script>
+        <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+        <script src="/static/js/load-image.all.min.js"></script>
+        <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+        <script src="/static/js/canvas-to-blob.min.js"></script>
+        <!-- blueimp Gallery script -->
+        <script src="/static/js/jquery.blueimp-gallery.min.js"></script>
+        <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+        <script src="/static/js/jquery.iframe-transport.js"></script>
+        <!-- The basic File Upload plugin -->
+        <script src="/static/js/jquery.fileupload.js"></script>
+        <!-- The File Upload processing plugin -->
+        <script src="/static/js/jquery.fileupload-process.js"></script>
+        <!-- The File Upload image preview & resize plugin -->
+        <script src="/static/js/jquery.fileupload-image.js"></script>
+        <!-- The File Upload audio preview plugin -->
+        <script src="/static/js/jquery.fileupload-audio.js"></script>
+        <!-- The File Upload video preview plugin -->
+        <script src="/static/js/jquery.fileupload-video.js"></script>
+        <!-- The File Upload validation plugin -->
+        <script src="/static/js/jquery.fileupload-validate.js"></script>
+        <!-- The File Upload user interface plugin -->
+        <script src="/static/js/jquery.fileupload-ui.js"></script>
+        <!-- The main application script -->
+        <script src="/static/js/main.js"></script>
+        <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
+        <!--[if (gte IE 8)&(lt IE 10)]>
+        <script src="js/cors/jquery.xdr-transport.js"></script>
+        <![endif]-->
+
+        <script>$(function () { $("[data-toggle='tooltip']").tooltip(); });</script>
+        <script>jQuery(document).ready(function ($) { $(".clickable-row").click(function () { window.location = $(this).data("href"); }); });</script>
+        {%- endblock scripts %}
+        {%- endblock body %}
+        </body>
+        {%- endblock html %}
+        </html>
+        {% endblock doc -%}
