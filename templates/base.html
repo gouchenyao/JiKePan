@@ -31,12 +31,17 @@
         <style>
             html, body {
                 height: 100%;
+                margin-top: 0px;
+                padding-top: 0px;
             }
 
             body {
-                padding-top: 60px;
                 background-image: url('http://ohny7w589.bkt.clouddn.com/tg.jpg');
                 background-size: cover;
+            }
+
+            .navbar-static-top {
+                margin-top: -20px;
             }
 
             .navbar-brand {
@@ -57,7 +62,7 @@
         {% block body -%}
 
         {% block navbar %}
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">
@@ -65,7 +70,7 @@
                         济课盘
                     </a>
                 </div>
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav nav-pills">
                     {% if session.get('logged_in') %}
                     <li><a href="{{ url_for('show_courses') }}">课程列表</a></li>
                     <li><a href="{{ url_for('add_courses') }}">修改课表</a></li>
@@ -73,7 +78,7 @@
                     <li><a href="{{ url_for('update_courses') }}" data-toggle="tooltip" data-placement="bottom" title="此过程耗时五秒左右，更新后非本学期课程将会被删除！">更新课表</a></li>
                     {% endif %}
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav nav-pills navbar-right">
                     {% if not session.get('logged_in') %}
                     <li><a href="{{ url_for('login') }}">登录</a></li>
                     {% else %}

@@ -10,32 +10,29 @@
 
     /*web background*/
     .container {
-        height: 90%;
+        height: 55%;
         display: table;
     }
 
     .row {
         display: table-cell;
-        vertical-align: middle;
+        vertical-align: bottom;
+        text-align: center;
     }
 
     /* centered columns styles */
-    .row-centered {
-        text-align: center;
-    }
 
     .col-centered {
         display: inline-block;
         float: none;
         text-align: left;
-        margin-right: -4px;
     }
 </style>
 {% endblock %}
 
 {% block page_content %}
 <div class="container">
-    <div class="row row-centered">
+    <div class="row">
         <div class="well col-md-4 col-centered">
             <h1 align="center">济课盘</h1>
             <div>
