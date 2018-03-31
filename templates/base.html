@@ -21,7 +21,6 @@
         {%- endblock metas %}
 
         {%- block styles %}
-        <!-- Bootstrap -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}">
 
@@ -40,12 +39,12 @@
                 background-size: cover;
             }
 
-            .navbar-static-top {
-                margin-top: -20px;
-            }
-
             .navbar-brand {
                 margin-top: -4% !important;
+            }
+
+            .navbar-static-top{
+                margin-top: -20px;
             }
 
             .table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
@@ -97,12 +96,8 @@
         {%- endblock content %}
 
         {% block scripts %}
-        <script src="/static/js/jquery.min.js"></script>
-        <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-        <script src="/static/js/bootstrap.min.js"></script>
         <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
         <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
-
         <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
         <script src="/static/js/vendor/jquery.ui.widget.js"></script>
         <!-- The Templates plugin is included to render the upload/download listings -->
@@ -136,6 +131,7 @@
         <script src="js/cors/jquery.xdr-transport.js"></script>
         <![endif]-->
 
+        <script>jQuery(document).ready(function () {var isFirefox = navigator.userAgent.indexOf("Firefox") > -1; if (isFirefox) { $(".navbar-static-top").css("margin-top", "0"); } });</script>
         <script>$(function () { $("[data-toggle='tooltip']").tooltip(); });</script>
         <script>jQuery(document).ready(function ($) { $(".clickable-row").click(function () { window.location = $(this).data("href"); }); });</script>
         {%- endblock scripts %}
