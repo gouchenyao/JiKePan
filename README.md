@@ -1,10 +1,6 @@
 The version of Python used for development is 3.6.
 
-
-
 ------
-
-
 
 1. pip install pipenv
 
