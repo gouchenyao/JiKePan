@@ -29,11 +29,14 @@ def login():
 
     if request.method == 'POST':
         db = get_db()
-        password = (db.execute('select password from students where student_id = ?', [request.form['username']])).fetchone()
+        password = (db.execute('select password from students where student_id = ?',
+                               [request.form['username']])).fetchone()
 
         if (password == None) or (str(password[0]) != request.form['password']):
-            course_table = LogIn4m3(request.form['username'], request.form['password']).get_course_timetable(PhantomJS_path = app.root_path + '/phantomjs.exe')
-            
+            course_table = LogIn4m3(
+                request.form['username'],
+                request.form['password']).get_course_timetable(PhantomJS_path=app.root_path + '/phantomjs.exe')
+
             if course_table == 404:
                 flash('无法连接4m3! (＃ﾟдﾟﾒ)')
                 return render_template('login.html')
@@ -44,7 +47,8 @@ def login():
 
             elif course_table == 500:
                 flash('与4m3的连接因未知原因意外中断！ (＃ﾟдﾟﾒ)')
-                db.execute('replace into students (student_id, password) values (?, ?)', [request.form['username'], request.form['password']])
+                db.execute('replace into students (student_id, password) values (?, ?)',
+                           [request.form['username'], request.form['password']])
                 db.commit()
 
             else:
@@ -54,8 +58,10 @@ def login():
                 else:
                     flash('找到{}门课程！ (´･ᴗ･`)'.format(len(courses_id)), 'success')
                     for course_id in courses_id:
-                        db.execute('replace into students_courses (student_id, course_id) values (?, ?)', [request.form['username'], course_id])
-                db.execute('replace into students (student_id, password) values (?, ?)', [request.form['username'], request.form['password']])
+                        db.execute('replace into students_courses (student_id, course_id) values (?, ?)',
+                                   [request.form['username'], course_id])
+                db.execute('replace into students (student_id, password) values (?, ?)',
+                           [request.form['username'], request.form['password']])
                 db.commit()
 
         session['student_id'] = request.form['username']
@@ -78,7 +84,8 @@ def show_courses():
         return redirect(url_for('login'))
 
     db = get_db()
-    cursor = db.execute('select courses.course_id, courses.course_name, courses.teacher_name, courses.course_schedule \
+    cursor = db.execute(
+        'select courses.course_id, courses.course_name, courses.teacher_name, courses.course_schedule \
                         from students_courses, courses where students_courses.student_id = (?) and students_courses.course_id = courses.course_id \
                         order by courses.course_id asc', [session['student_id']])
     courses = cursor.fetchall()
@@ -104,8 +111,9 @@ def update_courses():
     db = get_db()
     password = (db.execute('select password from students where student_id = ?', [session['student_id']])).fetchone()
 
-    course_table = LogIn4m3(session['student_id'], password[0]).get_course_timetable(PhantomJS_path = app.root_path + '/phantomjs.exe')
-            
+    course_table = LogIn4m3(session['student_id'],
+                            password[0]).get_course_timetable(PhantomJS_path=app.root_path + '/phantomjs.exe')
+
     if course_table == 404:
         flash('无法连接4m3! (＃ﾟдﾟﾒ)')
         return redirect(url_for('show_courses'))
@@ -133,8 +141,9 @@ def update_courses():
         else:
             flash('找到{}门课程！ (´･ᴗ･`)'.format(len(courses_id)), 'success')
             for course_id in courses_id:
-                db.execute('insert into students_courses (student_id, course_id) values (?, ?)', [session['student_id'], course_id])
-                 
+                db.execute('insert into students_courses (student_id, course_id) values (?, ?)',
+                           [session['student_id'], course_id])
+
         db.commit()
         return redirect(url_for('show_courses'))
 
@@ -146,24 +155,28 @@ def add_courses():
         return redirect(url_for('login'))
 
     db = get_db()
-    cursor = db.execute('select courses.course_id, courses.course_name, courses.teacher_name, courses.course_schedule \
+    cursor = db.execute(
+        'select courses.course_id, courses.course_name, courses.teacher_name, courses.course_schedule \
                         from students_courses, courses where students_courses.student_id = (?) and students_courses.course_id = courses.course_id \
                         order by courses.course_id asc', [session['student_id']])
     courses = cursor.fetchall()
 
     if request.method == 'POST':
-        if ((db.execute('select course_id from courses where course_id = ?', [request.form['course_id']])).fetchone()) == None:
+        if ((db.execute('select course_id from courses where course_id = ?',
+                        [request.form['course_id']])).fetchone()) == None:
             flash('课程不存在！ (＃ﾟдﾟﾒ)')
             return redirect(url_for('add_courses'))
 
-        if ((db.execute('select student_id, course_id from students_courses where (student_id, course_id) = (?, ?)', [session['student_id'], request.form['course_id']])).fetchone()) != None:
+        if ((db.execute('select student_id, course_id from students_courses where (student_id, course_id) = (?, ?)',
+                        [session['student_id'], request.form['course_id']])).fetchone()) != None:
             flash('课程已存在！ ヾ(ﾟдﾟ)ﾉ')
             return redirect(url_for('add_courses'))
 
-        db.execute('insert into students_courses (student_id, course_id) values (?, ?)', [session['student_id'], request.form['course_id']])
+        db.execute('insert into students_courses (student_id, course_id) values (?, ?)',
+                   [session['student_id'], request.form['course_id']])
         db.commit()
         return redirect(url_for('add_courses'))
-    
+
     return render_template('add_courses.html', courses=courses)
 
 
@@ -178,8 +191,10 @@ def delete_course(course_id):
     if ((db.execute('select course_id from courses where course_id = ?', [course_id])).fetchone()) == None:
         flash('课程不存在！ (＃ﾟдﾟﾒ)')
 
-    if ((db.execute('select student_id, course_id from students_courses where (student_id, course_id) = (?, ?)', [session['student_id'], course_id])).fetchone()) != None:
-        db.execute('delete from students_courses where (student_id, course_id) = (?, ?)', [session['student_id'], course_id])
+    if ((db.execute('select student_id, course_id from students_courses where (student_id, course_id) = (?, ?)',
+                    [session['student_id'], course_id])).fetchone()) != None:
+        db.execute('delete from students_courses where (student_id, course_id) = (?, ?)',
+                   [session['student_id'], course_id])
         db.commit()
 
     return redirect(url_for('add_courses'))
@@ -193,7 +208,7 @@ def show_files(course_id):
 
     db = get_db()
     if ((db.execute('select student_id, course_id from students_courses where (student_id, course_id) = (?, ?)',
-        [session['student_id'], course_id])).fetchone()) == None:
+                    [session['student_id'], course_id])).fetchone()) == None:
         flash('请先选课！ ヾ(ﾟдﾟ)ﾉ')
         return redirect(url_for('show_courses'))
 
@@ -233,18 +248,22 @@ def upload():
                 #create thumbnail after saving
                 if mime_type.startswith('image'):
                     create_thumbnail(filename, session['course_id'])
-                
+
                 #get file size after saving
                 size = os.path.getsize(uploaded_file_path)
 
                 #return json for js call back
                 result = uploadfile(name=filename, type=mime_type, size=size)
-            
+
             return simplejson.dumps({'files': [result.get_file()]})
 
     if request.method == 'GET':
         #get all file in ./data directory
-        files = [f for f in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'], session['course_id'])) if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], session['course_id'], f)) and f not in IGNORED_FILES ]
+        files = [
+            f for f in os.listdir(os.path.join(app.config['UPLOAD_FOLDER'], session['course_id']))
+            if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], session['course_id'], f)) and
+            f not in IGNORED_FILES
+        ]
 
         file_display = []
 
@@ -273,7 +292,7 @@ def delete_files(filename):
 
             if os.path.exists(file_thumb_path):
                 os.remove(file_thumb_path)
-            
+
             return simplejson.dumps({filename: 'True'})
         except:
             return simplejson.dumps({filename: 'False'})
@@ -296,6 +315,7 @@ def get_file(filename):
         return redirect(url_for('login'))
 
     return send_from_directory(os.path.join(app.config['UPLOAD_FOLDER'], session['course_id']), filename=filename)
+
 
 if __name__ == '__main__':
     serve(app, listen='0.0.0.0:80')
