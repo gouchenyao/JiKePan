@@ -1,11 +1,24 @@
-The version of Python used for development is 3.6.
+# JiKePan
 
-------
+JiKePan is a mobile-ready web file sharing system for course teaching.
 
-1. pip install pipenv
+### Tech
 
-2. pipenv install
+JiKePan uses a number of open source projects to work properly:
 
-3. pipenv run python database.py
+* Flask
+* Bootstrap
+* Sqlite
+* jQuery
 
-4. pipenv run python view.py
+### Installation
+
+JiKePan requires Pipenv and Python 3.6 or above to run.
+
+Install the dependencies and dev-dependencies from Pipfile using Pipenv, initialize the database and start the server.
+
+```sh
+$ pipenv install
+$ pipenv run python database.py
+$ pipenv run python view.py
+```
