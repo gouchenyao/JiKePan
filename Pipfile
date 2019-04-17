@@ -11,6 +11,7 @@ pillow = "*"
 simplejson = "*"
 waitress = "*"
 selenium = "==3.8.0"
+jinja2 = "*"
 
 [dev-packages]
 
