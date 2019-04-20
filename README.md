@@ -2,7 +2,7 @@
 
 JiKePan is a mobile-ready web file sharing system for course teaching.
 
-### Tech
+## Tech
 
 JiKePan uses a number of open source projects to work properly:
 
@@ -11,7 +11,7 @@ JiKePan uses a number of open source projects to work properly:
 * Sqlite
 * jQuery
 
-### Installation
+## Installation
 
 JiKePan requires Pipenv and Python 3.6 or above to run.
 
@@ -20,5 +20,5 @@ Install the dependencies and dev-dependencies from Pipfile using Pipenv, initial
 ```sh
 $ pipenv install
 $ pipenv run python database.py
-$ pipenv run python view.py
+$ pipenv run python views.py
 ```
